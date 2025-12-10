@@ -8,9 +8,10 @@ import (
 )
 
 type Config struct {
-	UseMusic bool `json:"use_music"`
-	UseLeaf  bool `json:"use_leaf"`
-	Size     int  `json:"speed"`
+	UseMusic    bool `json:"use_music"`
+	UseLeaf     bool `json:"use_leaf"`
+	Size        int  `json:"speed"`
+	SnowDensity int  `json:"snow_density"`
 }
 
 const appDirName = "happy-go-christmas"
@@ -30,6 +31,7 @@ func CreateConfig() Config {
 	var useMusic bool
 	var useLeaf bool
 	var size int
+	var snowDensity int
 
 	fmt.Print("Use Music? (y/n): ")
 	fmt.Scan(&answer)
@@ -48,16 +50,22 @@ func CreateConfig() Config {
 		fmt.Scan(&size)
 	}
 
-	err := SaveConfig(useMusic, useLeaf, size)
+	for snowDensity < 1 && snowDensity <= 100 {
+		fmt.Print("Write the snow density in percent(1% < x < 100%): ")
+		fmt.Scan(&snowDensity)
+	}
+
+	err := SaveConfig(useMusic, useLeaf, size, snowDensity)
 	if err != nil {
 		path, _ := getConfigPath()
 		fmt.Printf("Warning: could not save config to %s: %v\n", path, err)
 	}
 
 	return Config{
-		UseMusic: useMusic,
-		UseLeaf:  useLeaf,
-		Size:     size,
+		UseMusic:    useMusic,
+		UseLeaf:     useLeaf,
+		Size:        size,
+		SnowDensity: snowDensity,
 	}
 }
 
@@ -82,11 +90,12 @@ func LoadConfig() (Config, bool) {
 	return cfg, true
 }
 
-func SaveConfig(useMusic bool, useLeaf bool, size int) error {
+func SaveConfig(useMusic bool, useLeaf bool, size int, snowDensity int) error {
 	cfg := Config{
-		UseMusic: useMusic,
-		UseLeaf:  useLeaf,
-		Size:     size,
+		UseMusic:    useMusic,
+		UseLeaf:     useLeaf,
+		Size:        size,
+		SnowDensity: snowDensity,
 	}
 
 	path, err := getConfigPath()
@@ -112,6 +121,7 @@ func SaveConfig(useMusic bool, useLeaf bool, size int) error {
 
 func handleConfig(cfg Config) {
 	lenTree = cfg.Size
+	snowDensity = cfg.SnowDensity
 	marginBottom = lenTree / 5
 	barkHight = lenTree / 10
 	treeHight = (lenTree + 1) / 2

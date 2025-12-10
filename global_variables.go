@@ -31,13 +31,14 @@ var (
 	//go:embed jingle-bells-8bit.mp3
 	f embed.FS
 
-	lenTree      = 0
-	marginBottom = lenTree / 5
-	barkHight    = lenTree / 10
-	treeHight    = (lenTree + 1) / 2
-	marginSide   = marginBottom * 3
-	lenSide      = treeHight + marginBottom + barkHight
-	lenRow       = marginSide + lenTree
+	lenTree,
+	marginBottom,
+	barkHight,
+	treeHight,
+	marginSide,
+	lenSide,
+	lenRow,
+	snowDensity int
 )
 
 const (

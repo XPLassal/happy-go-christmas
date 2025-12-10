@@ -88,7 +88,7 @@ func printTree(cfg Config, withDelay bool) {
 	for range treeHight {
 		printSpaces(Point{0, y}, (marginSide+(lenTree-i))/2)
 		printStars(i, withDelay, cfg)
-		printSpaces(Point{marginSide + i, y}, marginSide+lenTree)
+		printSpaces(Point{(marginSide+(lenTree-i))/2 + i, y}, lenRow)
 		print("\n")
 		y++
 		i += 2
