@@ -37,23 +37,34 @@ func printStars(numberOfStars int, useDelay bool, cfg Config) {
 }
 
 func printBase(p Point) {
+	baseWidth := max(lenTree/3, 3)
+
+	if baseWidth%2 == 0 {
+		baseWidth--
+	}
+
 	i := 0
-	j := barkHight
+	j := max(barkHight, 1)
+
 	for {
+		currentWidth := baseWidth + (i * 2)
+
+		fillCount := currentWidth - 2
+
 		pot := strings.Builder{}
-
 		pot.WriteString("▟")
-		pot.WriteString(strings.Repeat("█", ((lenTree-(lenTree+1)%2)/5)+i*2))
+		pot.WriteString(strings.Repeat("█", fillCount))
 		pot.WriteString("▙")
-
-		printSpaces(p, lenRow/2-pot.Len()/6-1)
-		printColor(Brown)
 		pot.WriteByte('\n')
+		totalTreeWidth := marginSide + lenTree
+		padding := (totalTreeWidth - currentWidth) / 2
 
-		print(pot.String())
+		printSpaces(p, padding)
+
+		print(Brown, pot.String())
+
 		i++
 		j--
-
 		if j <= 0 {
 			break
 		}
@@ -84,6 +95,12 @@ func printTree(cfg Config, withDelay bool) {
 	}
 
 	printBase(Point{0, y})
+
+	for range marginBottom {
+		printSpaces(Point{0, y}, lenRow)
+		print("\n")
+		y++
+	}
 }
 
 func printSpaces(p Point, endX int) {

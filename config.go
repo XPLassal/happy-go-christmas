@@ -43,8 +43,8 @@ func CreateConfig() Config {
 		useLeaf = true
 	}
 
-	for size < 10 {
-		fmt.Print("Write the size of the tree(more than 10): ")
+	for size < 5 {
+		fmt.Print("Write the size of the tree(more than 5): ")
 		fmt.Scan(&size)
 	}
 
@@ -115,7 +115,7 @@ func handleConfig(cfg Config) {
 	marginBottom = lenTree / 5
 	barkHight = lenTree / 10
 	treeHight = (lenTree + 1) / 2
-	marginSide = marginBottom * 3
+	marginSide = marginBottom * 7
 	lenSide = treeHight + marginBottom + barkHight
 	lenRow = marginSide + lenTree
 
