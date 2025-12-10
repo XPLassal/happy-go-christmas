@@ -55,13 +55,15 @@ func printBase(p Point) {
 		pot.WriteString("▟")
 		pot.WriteString(strings.Repeat("█", fillCount))
 		pot.WriteString("▙")
-		pot.WriteByte('\n')
 		totalTreeWidth := marginSide + lenTree
 		padding := (totalTreeWidth - currentWidth) / 2
 
 		printSpaces(p, padding)
 
 		print(Brown, pot.String())
+
+		printSpaces(Point{padding + fillCount, p.y}, lenRow-2)
+		print("\n")
 
 		i++
 		j--
