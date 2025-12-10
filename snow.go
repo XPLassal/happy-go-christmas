@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 )
 
@@ -30,8 +29,6 @@ func updateSnow() {
 			newSnowflakes = append(newSnowflakes, snowflake{Point{v.p.x + (-2 + (rand.Intn(4) + 1)), v.p.y + 1}, v.texture})
 		}
 	}
-	fmt.Println(lenRow, snowDensity)
-	fmt.Println((lenRow * snowDensity) / 100)
 	for range (lenRow * snowDensity) / 100 {
 		newSnowflakes = append(newSnowflakes, generateNewSnowflake())
 	}
