@@ -1,6 +1,7 @@
 package main
 
 import (
+	"os"
 	"time"
 
 	"github.com/gopxl/beep/v2/effects"
@@ -22,14 +23,30 @@ func playSound() {
 }
 
 func main() {
-	playSound()
+
+	cfg, exists := LoadConfig()
+
+	if len(os.Args) > 1 {
+		if os.Args[1] == "--edit" {
+			cfg = CreateConfig()
+			exists = true
+		}
+	}
+
+	if !exists {
+		cfg = CreateConfig()
+	}
+
+	handleConfig(cfg)
+
 	clearConsole()
 
-	printTree(true)
+	printTree(cfg, true)
 
 	for {
 		resetCursor()
-		printTree(false)
+		printTree(cfg, false)
+		updateSnow()
 		time.Sleep(200 * time.Millisecond)
 	}
 }

@@ -21,14 +21,26 @@ var (
 		BrightGreen,
 	}
 
-	leaf           = [...]string{"⣿", "⣷", "⣯", "⣟", "⣻", "⣽", "⣾"}
-	toys           = [...]string{"❄", "❅", "❆", "✼", "✽"}
-	starSpawnDelay = 10 * time.Millisecond
+	leafTexture       = []string{"⣿", "⣷", "⣯", "⣟", "⣻", "⣽", "⣾"}
+	snowflakesTexture = []string{"*", ".", "❄", "·", "✽", "❅", "❋"}
+
+	snowflakes = make([]snowflake, 0, lenTree*lenTree)
+
+	y = 0
+
 	//go:embed jingle-bells-8bit.mp3
 	f embed.FS
+
+	lenTree      = 0
+	marginBottom = lenTree / 5
+	barkHight    = lenTree / 10
+	treeHight    = (lenTree + 1) / 2
+	marginSide   = marginBottom * 3
+	lenSide      = treeHight + marginBottom + barkHight
+	lenRow       = marginSide + lenTree
 )
 
 const (
-	lenTree       = 25
-	сolorBallRate = 35
+	сolorBallRate  = 35
+	starSpawnDelay = 10 * time.Millisecond
 )
