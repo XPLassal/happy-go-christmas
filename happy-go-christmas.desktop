@@ -1,0 +1,9 @@
+[Desktop Entry]
+Type=Application
+Name=Happy Go Christmas
+Comment=Atmospheric Christmas Tree with Music
+Exec=happy-go-christmas
+Icon=happy-go-christmas
+Terminal=true
+Categories=Game;Amusement;
+Keywords=christmas;tree;go;
