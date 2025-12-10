@@ -1,11 +1,11 @@
 <div align="center">
-  <img src="icon.png" alt="Logo" width="128" height="128">
+  <img src="icon.png" alt="Happy Go Christmas Logo" width="180">
 
   # 🎄 Happy Go Christmas
 
   **A high-performance, atmospheric Christmas tree for your terminal.**
   <br>
-  Written in Go, featuring procedural snow physics, embedded 8-bit music, and zero external dependencies.
+  Written in Go, featuring customizable snow physics, embedded 8-bit music, and persistent settings.
 
   <br>
 
@@ -23,10 +23,10 @@
 ## ✨ Features
 
 * 🎵 **Embedded Audio:** Includes an 8-bit "Jingle Bells" track packed directly into the binary using `embed`. No extra files needed!
-* ❄️ **Physics-based Snow:** Snowflakes drift with the wind using a custom procedural algorithm.
+* ❄️ **Customizable Physics:** Snowflakes drift with the wind, and you can control the **snow density** (from light flurry to heavy blizzard).
+* ⚙️ **Smart JSON Config:** Automatically saves your preferences (Tree size, Music, Density, Leaf style) to `~/.config/happy-go-christmas/config.json`.
 * 🐧 **Linux Integration:** Native `.desktop` support and application icon.
 * 🚀 **High Performance:** Written in Go using efficient `strings.Builder` and VT100 escape codes for flicker-free rendering.
-* ⚙️ **Smart Config:** Remembers your preferences (Tree size, Music, Leaf style) in `~/.config/happy-go-christmas/`.
 
 ## 📦 Installation
 
@@ -37,7 +37,7 @@ The easiest way to install. Updates are handled by your package manager.
 yay -S happy-go-christmas
 # or
 paru -S happy-go-christmas
-````
+```
 
 ### 📥 Binary Download (Windows, macOS, Linux)
 
@@ -76,6 +76,7 @@ On the first run, it will ask for your preferences interactively:
 Use Music? (y/n): y
 Use Leaf ( ⣿ ⣷ ⣯ ) instead of stars( * )? (y/n): n
 Write the size of the tree(more than 5): 15
+Write the snow density in percent(1% < x < 100%): 20
 ```
 
 **Options:**
