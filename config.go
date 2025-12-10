@@ -13,7 +13,7 @@ type Config struct {
 	Size     int  `json:"speed"`
 }
 
-const appDirName = "happy_go_cristmas"
+const appDirName = "happy-go-christmas"
 const configFileName = "config.json"
 
 func getConfigPath() (string, error) {

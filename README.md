@@ -14,7 +14,7 @@ Features smooth animations, procedural snowfall, and embedded 8-bit music.
   * **🎵 Embedded Audio:** Uses `embed` standard library to pack 8-bit Jingle Bells directly into the binary. No external dependencies or asset folders required.
   * **❄️ Procedural Snowfall:** "Drifting" snow algorithm that renders snowflakes around the tree with randomized trajectories.
   * **🚀 Optimized Rendering:** Uses `strings.Builder`. Zero-allocation rendering loop where possible.
-  * **⚙️ Persistent Config:** Automatically saves user preferences (Tree size, Music, Leaf style) to `os.UserConfigDir()` (`~/.config/happy_go_cristmas/` on Linux).
+  * **⚙️ Persistent Config:** Automatically saves user preferences (Tree size, Music, Leaf style) to `os.UserConfigDir()` (`~/.config/happy-go-christmas/` on Linux).
   * **🖥️ Cross-Platform:** Runs natively on Linux, Windows, and macOS (Intel & Apple Silicon).
 
 ## 📥 Installation
@@ -80,4 +80,4 @@ Feel free to open issues or submit PRs if you want to add new snowflake types, m
 
 ## 📜 License
 
-MIT License. See [LICENSE](https://www.google.com/search?q=LICENSE) for details.
+MIT License. See [LICENSE](https://github.com/XPLassal/happy-go-christmas/blob/main/LICENSE) for details.
