@@ -43,7 +43,7 @@ func printBase(p Point) {
 		pot := strings.Builder{}
 
 		pot.WriteString("▟")
-		pot.WriteString(strings.Repeat("█", (lenTree/4)-((lenTree+1)%2)+i*2))
+		pot.WriteString(strings.Repeat("█", ((lenTree-(lenTree+1)%2)/5)+i*2))
 		pot.WriteString("▙")
 
 		printSpaces(p, lenRow/2-pot.Len()/6-1)
