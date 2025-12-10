@@ -1,79 +1,102 @@
------
+<div align="center">
+  <img src="icon.png" alt="Logo" width="128" height="128">
 
-# 🎄 Happy Go Christmas
+  # 🎄 Happy Go Christmas
 
-High-performance, atmospheric Christmas tree for your terminal, written in Go.
-Features smooth animations, procedural snowfall, and embedded 8-bit music.
+  **A high-performance, atmospheric Christmas tree for your terminal.**
+  <br>
+  Written in Go, featuring procedural snow physics, embedded 8-bit music, and zero external dependencies.
 
-> **Note:** Best viewed in a terminal with TrueColor support (e.g., Alacritty, Kitty, Windows Terminal).
+  <br>
 
-![Preview](preview.gif)
+  ![Go Version](https://img.shields.io/github/go-mod/go-version/XPLassal/happy-go-christmas?style=for-the-badge&logo=go&color=00ADD8)
+  ![AUR Version](https://img.shields.io/aur/version/happy-go-christmas?style=for-the-badge&logo=archlinux&color=1793d1)
+  ![License](https://img.shields.io/github/license/XPLassal/happy-go-christmas?style=for-the-badge&color=blue)
+
+  <br>
+  <br>
+  <img src="preview.gif" alt="Demo" width="600">
+</div>
+
+---
 
 ## ✨ Features
 
-  * **🎵 Embedded Audio:** Uses `embed` standard library to pack 8-bit Jingle Bells directly into the binary. No external dependencies or asset folders required.
-  * **❄️ Procedural Snowfall:** "Drifting" snow algorithm that renders snowflakes around the tree with randomized trajectories.
-  * **🚀 Optimized Rendering:** Uses `strings.Builder`. Zero-allocation rendering loop where possible.
-  * **⚙️ Persistent Config:** Automatically saves user preferences (Tree size, Music, Leaf style) to `os.UserConfigDir()` (`~/.config/happy-go-christmas/` on Linux).
-  * **🖥️ Cross-Platform:** Runs natively on Linux, Windows, and macOS (Intel & Apple Silicon).
+* 🎵 **Embedded Audio:** Includes an 8-bit "Jingle Bells" track packed directly into the binary using `embed`. No extra files needed!
+* ❄️ **Physics-based Snow:** Snowflakes drift with the wind using a custom procedural algorithm.
+* 🐧 **Linux Integration:** Native `.desktop` support and application icon.
+* 🚀 **High Performance:** Written in Go using efficient `strings.Builder` and VT100 escape codes for flicker-free rendering.
+* ⚙️ **Smart Config:** Remembers your preferences (Tree size, Music, Leaf style) in `~/.config/happy-go-christmas/`.
 
-## 📥 Installation
+## 📦 Installation
 
-### Option 1: Build from Source
+### 🐧 Arch Linux / Manjaro / CachyOS (AUR)
+The easiest way to install. Updates are handled by your package manager.
 
-Requirements: **Go 1.22+** (due to `math/rand/v2` and `GOEXPERIMENT` features).
+```bash
+yay -S happy-go-christmas
+# or
+paru -S happy-go-christmas
+````
 
-1.  Clone the repo:
+### 📥 Binary Download (Windows, macOS, Linux)
 
-    ```bash
-    git clone https://github.com/XPLassal/happy-go-christmas.git
-    cd happy-go-christmas
-    ```
+Download the latest ready-to-run executable from the [Releases Page](https://www.google.com/search?q=https://github.com/XPLassal/happy-go-christmas/releases).
 
-2.  Run directly:
+  * **Windows:** `.exe` comes with a custom pixel-art icon\!
+  * **Linux/macOS:** Don't forget to run `chmod +x happy_new_year` after downloading.
 
-    ```bash
-    go run .
-    ```
+### 🛠 Build from Source
 
-3.  Or build using the provided script (support for Windows/Linux/macOS):
+Requirements: **Go 1.22+**
 
-    ```bash
-    chmod +x build.sh
-    ./build.sh
-    ```
+```bash
+git clone [https://github.com/XPLassal/happy-go-christmas.git](https://github.com/XPLassal/happy-go-christmas.git)
+cd happy-go-christmas
 
-    *Artifacts will be placed in the `builds/` directory.*
+# Run directly
+go run .
 
-### Option 2: Download Binary
-
-Check the [Releases](https://www.google.com/search?q=https://github.com/XPLassal/happy-go-christmas/releases) page for the latest pre-compiled binaries.
+# Or build using the script
+chmod +x build.sh
+./build.sh
+```
 
 ## 🎮 Usage & Configuration
 
-On the first run, the app will ask for your preferences interactively:
+Simply run the app in your terminal:
+
+```bash
+happy-go-christmas
+```
+
+On the first run, it will ask for your preferences interactively:
 
 ```text
 Use Music? (y/n): y
-Use Leaf ( ⣿", "⣷", "⣯", "⣟", "⣻", "⣽", "⣾" ) instead stars( * )? (y/n): n
+Use Leaf ( ⣿ ⣷ ⣯ ) instead of stars( * )? (y/n): n
 Write the size of the tree(more than 5): 15
 ```
 
-### CLI Arguments
+**Options:**
 
-To force a reconfiguration (edit mode), run:
+  * `--edit`: Force reconfiguration mode to change settings.
+
+<!-- end list -->
 
 ```bash
-./happy_new_year --edit
+happy-go-christmas --edit
 ```
 
-## 🛠️ Tech Stack
+## 🏗️ Tech Stack
 
   * **Language:** Go (Golang)
-  * **Audio:** [gopxl/beep/v2](https://github.com/gopxl/beep) (Sound processing)
-  * **Build System:** Custom Bash script with `GOEXPERIMENT=greenteagc` for memory optimization.
-  * **Assets:** `embed.FS` for single-binary distribution.
+  * **Audio Engine:** [gopxl/beep/v2](https://github.com/gopxl/beep)
+  * **Assets:** `embed.FS` (Single binary distribution)
+  * **Build System:** Custom Bash script with `GOEXPERIMENT=greenteagc`
 
 ## 📜 License
 
-MIT License. See [LICENSE](https://github.com/XPLassal/happy-go-christmas/blob/main/LICENSE) for details.
+Distributed under the MIT License. See [LICENSE](https://github.com/XPLassal/happy-go-christmas/blob/main/LICENSE) for more information.
+
+-----
