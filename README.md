@@ -74,10 +74,6 @@ To force a reconfiguration (edit mode), run:
   * **Build System:** Custom Bash script with `GOEXPERIMENT=greenteagc` for memory optimization.
   * **Assets:** `embed.FS` for single-binary distribution.
 
-## 🤝 Contributing
-
-Feel free to open issues or submit PRs if you want to add new snowflake types, music tracks, or optimize the rendering engine further\!
-
 ## 📜 License
 
 MIT License. See [LICENSE](https://github.com/XPLassal/happy-go-christmas/blob/main/LICENSE) for details.
