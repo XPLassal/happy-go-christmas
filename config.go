@@ -43,8 +43,8 @@ func CreateConfig() Config {
 		useLeaf = true
 	}
 
-	for size < 5 {
-		fmt.Print("Write the size of the tree(more than 5): ")
+	for size < 10 {
+		fmt.Print("Write the size of the tree(more than 10): ")
 		fmt.Scan(&size)
 	}
 
