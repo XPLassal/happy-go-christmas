@@ -1,14 +1,15 @@
 package main
 
 import (
-	"fmt"
 	"math/rand"
 	"os"
 	"strings"
-	"time"
 )
 
-func printStars(numberOfStars int, useDelay bool, cfg Config) {
+func getStars(numberOfStars int, cfg Config) string {
+	sb := CustomStringsBuilder{}
+	sb.Grow(numberOfStars * 25)
+
 	for range numberOfStars {
 		symbol := ""
 
@@ -18,25 +19,25 @@ func printStars(numberOfStars int, useDelay bool, cfg Config) {
 			symbol = "*"
 		}
 
-		printColor(Bold)
+		sb.WriteString(Bold)
 
 		if numberOfStars == 1 {
-			printColor(BrightYellow)
+			sb.WriteString(BrightYellow)
 
 		} else if randomNumber := rand.Intn(100); randomNumber > (100 - сolorBallRate) {
-			printRandomColor()
+			sb.WriteString(getRandomColor())
 		}
 
-		fmt.Print(symbol)
-		fmt.Print(Green)
-
-		if useDelay {
-			time.Sleep(starSpawnDelay)
-		}
+		sb.WriteStrings(symbol, Green)
 	}
+	sb.WriteStrings(Reset)
+	return sb.String()
 }
 
-func printBase(p Point) {
+func getBase(p Point) string {
+	sb := CustomStringsBuilder{}
+	sb.Grow(barkHight * lenRow * 10)
+
 	baseWidth := max(lenTree/3, 3)
 
 	if baseWidth%2 == 0 {
@@ -50,20 +51,13 @@ func printBase(p Point) {
 		currentWidth := baseWidth + (i * 2)
 
 		fillCount := currentWidth - 2
-
-		pot := strings.Builder{}
-		pot.WriteString("▟")
-		pot.WriteString(strings.Repeat("█", fillCount))
-		pot.WriteString("▙")
 		totalTreeWidth := marginSide + lenTree
 		padding := (totalTreeWidth - currentWidth) / 2
 
-		printSpaces(p, padding)
+		sb.WriteStrings(getSpaces(p, padding))
+		sb.WriteStrings(Brown, "▟", strings.Repeat("█", fillCount), "▙", Reset)
 
-		print(Brown, pot.String())
-
-		printSpaces(Point{padding + fillCount, p.y}, lenRow-2)
-		print("\n")
+		sb.WriteStrings(getSpaces(Point{padding + fillCount, p.y}, lenRow-2), "\n")
 
 		i++
 		j--
@@ -71,52 +65,57 @@ func printBase(p Point) {
 			break
 		}
 	}
+	return sb.String()
 }
+
 func print(s ...string) {
 	for _, el := range s {
 		os.Stdout.WriteString(el)
 	}
 }
 
-func printTree(cfg Config, withDelay bool) {
+func getTree(cfg Config) string {
+	sb := CustomStringsBuilder{}
+	estimatedSize := (lenSide + marginBottom*2) * lenRow * 10
+	sb.Grow(estimatedSize)
+
 	y = 0
 	for range marginBottom {
-		printSpaces(Point{0, y}, lenRow)
-		print("\n")
+		sb.WriteStrings(getSpaces(Point{0, y}, lenRow), "\n")
 		y++
 	}
 
 	i := 1
 	for range treeHight {
-		printSpaces(Point{0, y}, (marginSide+(lenTree-i))/2)
-		printStars(i, withDelay, cfg)
-		printSpaces(Point{(marginSide+(lenTree-i))/2 + i, y}, lenRow)
-		print("\n")
+		sb.WriteStrings(getSpaces(Point{0, y}, (marginSide+(lenTree-i))/2))
+		sb.WriteStrings(getStars(i, cfg))
+		sb.WriteStrings(getSpaces(Point{(marginSide+(lenTree-i))/2 + i, y}, lenRow), "\n")
+
 		y++
 		i += 2
 	}
 
-	printBase(Point{0, y})
+	sb.WriteStrings(getBase(Point{0, y}))
 
 	for range marginBottom {
-		printSpaces(Point{0, y}, lenRow)
-		print("\n")
+		sb.WriteStrings(getSpaces(Point{0, y}, lenRow), "\n")
 		y++
 	}
+
+	return sb.String()
 }
 
-func printSpaces(p Point, endX int) {
+func getSpaces(p Point, endX int) string {
+	sb := CustomStringsBuilder{}
+	sb.Grow((endX - p.x) * 4)
 	for ; p.x <= endX; p.x++ {
 		if texture, ok := isConsistSnowflace(p); ok {
-			printSnowflake(texture)
+			sb.WriteString(texture)
 		} else {
-			print(" ")
+			sb.WriteString(" ")
 		}
 	}
-}
-
-func printSnowflake(s string) {
-	print(Bold, White, s)
+	return sb.String()
 }
 
 func getRandomEl(l []string) string {

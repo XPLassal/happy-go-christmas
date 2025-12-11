@@ -23,29 +23,29 @@ func playSound() {
 }
 
 func main() {
-
 	cfg, exists := LoadConfig()
-
 	if len(os.Args) > 1 {
 		if os.Args[1] == "--edit" {
 			cfg = CreateConfig()
 			exists = true
 		}
 	}
-
 	if !exists {
 		cfg = CreateConfig()
 	}
 
 	handleConfig(cfg)
-
 	clearConsole()
 
-	printTree(cfg, true)
+	delay := 1 * time.Microsecond
+	for _, el := range getTree(cfg) {
+		print(string(el))
+		time.Sleep(delay)
+	}
 
 	for {
 		resetCursor()
-		printTree(cfg, false)
+		print(getTree(cfg))
 		updateSnow()
 		time.Sleep(200 * time.Millisecond)
 	}

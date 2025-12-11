@@ -40,7 +40,7 @@ func getRandomColor() string {
 	return BrightColors[rand.Intn(len(BrightColors))]
 }
 
-func printRandomColor() {
+func printRandomColor() string {
 	randomColor := getRandomColor()
-	printColor(randomColor)
+	return randomColor
 }

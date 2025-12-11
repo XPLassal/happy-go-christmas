@@ -11,6 +11,7 @@
 
   ![Go Version](https://img.shields.io/github/go-mod/go-version/XPLassal/happy-go-christmas?style=for-the-badge&logo=go&color=00ADD8)
   ![AUR Version](https://img.shields.io/aur/version/happy-go-christmas?style=for-the-badge&logo=archlinux&color=1793d1)
+  ![Performance](https://img.shields.io/badge/render_time-~50µs-brightgreen?style=for-the-badge&logo=speedtest)
   ![License](https://img.shields.io/github/license/XPLassal/happy-go-christmas?style=for-the-badge&color=blue)
 
   <br>
@@ -22,11 +23,19 @@
 
 ## ✨ Features
 
+* 🚀 **Blazing Fast Rendering:**
+  * Powered by a custom **Double Buffering** engine with memory pre-allocation.
+  * Zero-flicker rendering loop.
+  * **Benchmarks:** Renders a size-15 tree in **~50µs** (down from 2ms), handling thousands of particles with negligible CPU usage.
+  
+<div align="center">
+  <img src="bench.gif" alt="Demo" width="600">
+</div>
+  
 * 🎵 **Embedded Audio:** Includes an 8-bit "Jingle Bells" track packed directly into the binary using `embed`. No extra files needed!
 * ❄️ **Customizable Physics:** Snowflakes drift with the wind, and you can control the **snow density** (from light flurry to heavy blizzard).
 * ⚙️ **Smart JSON Config:** Automatically saves your preferences (Tree size, Music, Density, Leaf style) to `~/.config/happy-go-christmas/config.json`.
 * 🐧 **Linux Integration:** Native `.desktop` support and application icon.
-* 🚀 **High Performance:** Written in Go using efficient `strings.Builder` and VT100 escape codes for flicker-free rendering.
 
 ## 📦 Installation
 
@@ -41,7 +50,7 @@ paru -S happy-go-christmas
 
 ### 📥 Binary Download (Windows, macOS, Linux)
 
-Download the latest ready-to-run executable from the [Releases Page](https://www.google.com/search?q=https://github.com/XPLassal/happy-go-christmas/releases).
+Download the latest ready-to-run executable from the [Releases Page](https://github.com/XPLassal/happy-go-christmas/releases).
 
   * **Windows:** `.exe` comes with a custom pixel-art icon\!
   * **Linux/macOS:** Don't forget to run `chmod +x happy_new_year` after downloading.
@@ -83,8 +92,6 @@ Write the snow density in percent(1% < x < 100%): 20
 
   * `--edit`: Force reconfiguration mode to change settings.
 
-<!-- end list -->
-
 ```bash
 happy-go-christmas --edit
 ```
@@ -92,6 +99,7 @@ happy-go-christmas --edit
 ## 🏗️ Tech Stack
 
   * **Language:** Go (Golang)
+  * **Rendering:** Custom `strings.Builder` engine with `Grow` pre-allocation.
   * **Audio Engine:** [gopxl/beep/v2](https://github.com/gopxl/beep)
   * **Assets:** `embed.FS` (Single binary distribution)
   * **Build System:** Custom Bash script with `GOEXPERIMENT=greenteagc`
