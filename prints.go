@@ -1,9 +1,11 @@
 package main
 
 import (
+	"fmt"
 	"math/rand"
 	"os"
 	"strings"
+	"time"
 )
 
 func getStars(numberOfStars int, cfg Config) string {
@@ -79,6 +81,8 @@ func getTree(cfg Config) string {
 	estimatedSize := (lenSide + marginBottom*2) * lenRow * 10
 	sb.Grow(estimatedSize)
 
+	start := time.Now()
+
 	y = 0
 	for range marginBottom {
 		sb.WriteStrings(getSpaces(Point{0, y}, lenRow), "\n")
@@ -101,6 +105,10 @@ func getTree(cfg Config) string {
 		sb.WriteStrings(getSpaces(Point{0, y}, lenRow), "\n")
 		y++
 	}
+
+	end := time.Now()
+
+	fmt.Println(end.Sub(start))
 
 	return sb.String()
 }
