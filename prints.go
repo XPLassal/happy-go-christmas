@@ -34,7 +34,7 @@ func getStars(numberOfStars int, cfg Config) string {
 	return sb.String()
 }
 
-func getBase(p Point) string {
+func getBase(p Point) (int, string) {
 	sb := CustomStringsBuilder{}
 	sb.Grow(barkHight * lenRow * 10)
 
@@ -56,8 +56,9 @@ func getBase(p Point) string {
 
 		sb.WriteStrings(getSpaces(p, padding))
 		sb.WriteStrings(Brown, "▟", strings.Repeat("█", fillCount), "▙", Reset)
-
 		sb.WriteStrings(getSpaces(Point{padding + fillCount, p.y}, lenRow-2), "\n")
+
+		p.y++
 
 		i++
 		j--
@@ -65,7 +66,8 @@ func getBase(p Point) string {
 			break
 		}
 	}
-	return sb.String()
+
+	return p.y, sb.String()
 }
 
 func print(s ...string) {
@@ -95,7 +97,8 @@ func getTree(cfg Config) string {
 		i += 2
 	}
 
-	sb.WriteStrings(getBase(Point{0, y}))
+	y, str := getBase(Point{0, y})
+	sb.WriteStrings(str)
 
 	for range marginBottom {
 		sb.WriteStrings(getSpaces(Point{0, y}, lenRow), "\n")
