@@ -2,6 +2,7 @@ package main
 
 import (
 	"os"
+	"slices"
 	"time"
 
 	"github.com/gopxl/beep/v2/effects"
@@ -22,13 +23,15 @@ func playSound() {
 	speaker.Play(vol)
 }
 
+func haveArg(s string) bool {
+	return slices.Contains(os.Args[1:], s)
+}
+
 func main() {
 	cfg, exists := LoadConfig()
-	if len(os.Args) > 1 {
-		if os.Args[1] == "--edit" {
-			cfg = CreateConfig()
-			exists = true
-		}
+	if haveArg("--edit") {
+		cfg = CreateConfig()
+		exists = true
 	}
 	if !exists {
 		cfg = CreateConfig()
@@ -36,6 +39,14 @@ func main() {
 
 	handleConfig(cfg)
 	clearConsole()
+
+	if haveArg("--static") {
+		for range lenTree + marginBottom*2 {
+			updateSnow()
+		}
+		print(getTree(cfg))
+		return
+	}
 
 	delay := 1 * time.Microsecond
 	for _, el := range getTree(cfg) {
