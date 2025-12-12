@@ -123,10 +123,10 @@ func handleConfig(cfg Config) {
 	lenTree = cfg.Size
 	snowDensity = cfg.SnowDensity
 	marginBottom = lenTree / 5
-	barkHight = lenTree / 10
+	barkHight = lenTree / 15
 	treeHight = (lenTree + 1) / 2
 	marginSide = marginBottom * 7
-	lenSide = treeHight + marginBottom + barkHight
+	lenSide = treeHight + marginBottom*2 + barkHight
 	lenRow = marginSide + lenTree
 
 	if cfg.UseMusic {
