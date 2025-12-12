@@ -28,7 +28,7 @@ func updateSnow() {
 
 	for _, v := range snowflakes {
 		if v.p.y < lenSide {
-			newSnowflakes = append(newSnowflakes, snowflake{Point{v.p.x + (-2 + (rand.Intn(4) + 1)), v.p.y + 1}, v.texture})
+			newSnowflakes = append(newSnowflakes, snowflake{Point{v.p.x + (-2 + (rand.Intn(5))), v.p.y + 1}, v.texture})
 		}
 	}
 	for range spawnCount {
