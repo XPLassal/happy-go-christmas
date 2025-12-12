@@ -91,9 +91,11 @@ Write the snow density in percent(1% < x < 100%): 20
 **Options:**
 
   * `--edit`: Force reconfiguration mode to change settings.
-
+  * `--static`: Display a static image.
+  
 ```bash
 happy-go-christmas --edit
+happy-go-christmas --static
 ```
 
 ## 🏗️ Tech Stack
